@@ -1,4 +1,5 @@
 #[cfg(test)]
+extern crate rand;
 mod tests {
     #[test]
     fn it_works() {

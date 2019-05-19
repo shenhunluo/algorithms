@@ -1,5 +1,4 @@
 pub mod sort {
-
     use std::time::SystemTime;
     use rand::{random, Rng};
 
@@ -17,36 +16,36 @@ pub mod sort {
             let t1 = SystemTime::now();
             merge_sort(&mut a1, 0, r - 1);
             let t2 = SystemTime::now();
-            insert_sort(&mut a2,0,r-1);
+            insert_sort(&mut a2, 0, r - 1);
             let t3 = SystemTime::now();
             //merge_insert_sort(&mut a3,0,r-1);
             insert_m_sort(&mut a3);
             let t4 = SystemTime::now();
             a.sort();
             let t5 = SystemTime::now();
-            for l in 0..a.len(){
-                if(a1[l]!=a[l]){
+            for l in 0..a.len() {
+                if (a1[l] != a[l]) {
                     println!("merge error!!");
                     panic!();
                 }
             }
-            for l in 0..a.len(){
-                if(a2[l]!=a[l]){
+            for l in 0..a.len() {
+                if (a2[l] != a[l]) {
                     println!("insert error!!");
                     panic!();
                 }
             }
-            for l in 0..a.len(){
-                if(a3[l]!=a[l]){
+            for l in 0..a.len() {
+                if (a3[l] != a[l]) {
                     println!("insert error!!");
-                    println!("a:{:?}  a3:{:?}",a,a3);
+                    println!("a:{:?}  a3:{:?}", a, a3);
                     panic!();
                 }
             }
-            println!("system for 2*{} = {}:{:?}",i,(2 as i32).pow(i),t5.duration_since(t4).ok().unwrap());
-            println!("inseart-n for 2*{} = {}:{:?}",i,(2 as i32).pow(i),t4.duration_since(t3).ok().unwrap());
-            println!("insert for 2*{} = {}:{:?}",i,(2 as i32).pow(i),t3.duration_since(t2).ok().unwrap());
-            println!("merge for 2*{} = {}:{:?}",i,(2 as i32).pow(i),t2.duration_since(t1).ok().unwrap());
+            println!("system for 2*{} = {}:{:?}", i, (2 as i32).pow(i), t5.duration_since(t4).ok().unwrap());
+            println!("inseart-n for 2*{} = {}:{:?}", i, (2 as i32).pow(i), t4.duration_since(t3).ok().unwrap());
+            println!("insert for 2*{} = {}:{:?}", i, (2 as i32).pow(i), t3.duration_since(t2).ok().unwrap());
+            println!("merge for 2*{} = {}:{:?}", i, (2 as i32).pow(i), t2.duration_since(t1).ok().unwrap());
         }
     }
 

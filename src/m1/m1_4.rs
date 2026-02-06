@@ -4,7 +4,7 @@ use std::time::SystemTime;
 fn quick_find_max_subarray(v: &Vec<i32>) -> (usize, usize, i32) {
     let mut max_array = (0, 0, 0);
     let mut i = 0;
-    while (i < v.len()) {
+    while i < v.len() {
         let array = find_new_array(&v, i);
         i = array.1;
         let mut sum = array.2;
@@ -13,11 +13,11 @@ fn quick_find_max_subarray(v: &Vec<i32>) -> (usize, usize, i32) {
         }
         for j in i..v.len() {
             i = j + 1;
-            if (sum + v[j] < 0) {
+            if sum + v[j] < 0 {
                 break;
             } else {
                 sum = sum + v[j];
-                if (sum > max_array.2) {
+                if sum > max_array.2 {
                     max_array = (array.0, j + 1, sum);
                 }
             }
@@ -28,10 +28,10 @@ fn quick_find_max_subarray(v: &Vec<i32>) -> (usize, usize, i32) {
 
 fn find_new_array(v: &Vec<i32>, left: usize) -> (usize, usize, i32) {
     for i in left..v.len() {
-        if (v[i] > 0) {
+        if v[i] > 0 {
             let mut sum = v[i];
             for j in i + 1..v.len() {
-                if (v[j] < 0) {
+                if v[j] < 0 {
                     return (i, j, sum);
                 } else {
                     sum = sum + v[j];
@@ -47,12 +47,12 @@ pub fn m_main() {
     for j in 1..10 {
         let mut rng = thread_rng();
         let mut v = vec![];
-        for i in 0..(10 as i32).pow(j) {
+        for _ in 0..(10 as i32).pow(j) {
             v.push(rng.gen::<i32>() % 10);
         }
         //println!("{:?}", v);
         //println!("{:?}", quick_find_max_subarray(&v));
-        let r = v.len() - 1;
+        //let r = v.len() - 1;
         let t1 = SystemTime::now();
         quick_find_max_subarray(&v);
 //        let mut sum = 0;

@@ -2,7 +2,7 @@
 name = "algorithms"
 version = "0.1.0"
 authors = ["zdx"]
-edition = "2018"
+edition = "2021"
 
 [dependencies]
 rand = "*"

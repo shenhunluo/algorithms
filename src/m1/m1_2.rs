@@ -1,12 +1,12 @@
 pub mod sort {
     use std::time::SystemTime;
-    use rand::{random, Rng};
+    use rand::Rng;
 
     pub fn m_main() {
         for i in 1 as u32..16 {
             let mut a = vec![];
             let mut rng = rand::thread_rng();
-            for j in 0..(2 as i32).pow(i) {
+            for _j in 0..(2 as i32).pow(i) {
                 a.push(rng.gen::<i32>());
             }
             let r = a.len();
@@ -24,19 +24,19 @@ pub mod sort {
             a.sort();
             let t5 = SystemTime::now();
             for l in 0..a.len() {
-                if (a1[l] != a[l]) {
+                if a1[l] != a[l] {
                     println!("merge error!!");
                     panic!();
                 }
             }
             for l in 0..a.len() {
-                if (a2[l] != a[l]) {
+                if a2[l] != a[l] {
                     println!("insert error!!");
                     panic!();
                 }
             }
             for l in 0..a.len() {
-                if (a3[l] != a[l]) {
+                if a3[l] != a[l] {
                     println!("insert error!!");
                     println!("a:{:?}  a3:{:?}", a, a3);
                     panic!();
@@ -53,7 +53,7 @@ pub mod sort {
         for j in p..r - p + 1 {
             let key = a[j];
             let mut i = j;
-            while (i > p && a[i - 1] > key) {
+            while i > p && a[i - 1] > key {
                 a[i] = a[i - 1];
                 i = i - 1;
             }
@@ -66,7 +66,7 @@ pub mod sort {
             let key = a[j];
             let k = find_insert(a, 0, j - 1, key);
             let mut i = j;
-            while (i > k) {
+            while i > k {
                 a[i] = a[i - 1];
                 i = i - 1;
             }
@@ -76,14 +76,14 @@ pub mod sort {
 
     fn find_insert(a: &Vec<i32>, s: usize, e: usize, v: i32) -> usize {
         let q = (s + e) / 2;
-        if (s < e) {
-            if (a[q] >= v) {
+        if s < e {
+            if a[q] >= v {
                 return find_insert(a, s, q, v);
             } else {
                 return find_insert(a, q + 1, e, v);
             }
         } else {
-            if (v < a[s]) {
+            if v < a[s] {
                 return s;
             } else {
                 return s + 1;
@@ -92,7 +92,7 @@ pub mod sort {
     }
 
     fn merge_sort(a: &mut Vec<i32>, p: usize, r: usize) {
-        if (p < r) {
+        if p < r {
             let q = (p + r) / 2;
             merge_sort(a, p, q);
             merge_sort(a, q + 1, r);
@@ -100,9 +100,9 @@ pub mod sort {
         }
     }
 
-    fn merge_insert_sort(a: &mut Vec<i32>, p: usize, r: usize) {
-        if (p < r) {
-            if (r - p < 20) {
+    pub fn merge_insert_sort(a: &mut Vec<i32>, p: usize, r: usize) {
+        if p < r {
+            if r - p < 20 {
                 insert_sort(a, p, r);
             } else {
                 let q = (p + r) / 2;
@@ -113,7 +113,7 @@ pub mod sort {
         }
     }
 
-    fn merge(mut a: &mut Vec<i32>, p: usize, q: usize, r: usize) {
+    pub fn merge(a: &mut Vec<i32>, p: usize, q: usize, r: usize) {
         let n1 = q - p + 1;
         let n2 = r - q;
         let mut left = vec![];
@@ -129,7 +129,7 @@ pub mod sort {
         let mut j = 0;
         let mut k = 0;
         for i in p..r + 1 {
-            if (left[j] <= right[k]) {
+            if left[j] <= right[k] {
                 a[i] = left[j];
                 j = j + 1;
             } else {
